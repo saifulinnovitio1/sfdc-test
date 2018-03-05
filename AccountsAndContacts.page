@@ -1,46 +1,59 @@
-<apex:page standardController="Account" extensions="AccountsAndContactsController" tabStyle="Contact">
-
+<apex:page standardController="Contact" extensions="AccountsAndContactsController" tabStyle="Contact">
+        
     <apex:sectionHeader title="Accounts and Contacts" subtitle="Showing Activities"/>
     
-	<apex:pageBlock title="Accounts">
-    
+    <apex:pageBlock title="Accounts">
+        
         <apex:pageBlockTable value="{!accounts}" var="account">
-        
-                <apex:column value="{!account.Name}"/>
-                <apex:column headerValue="view">
-                    <apex:outputLink value="{!'/apex/AccountsAndContacts?accid='+account.id}">Link</apex:outputLink>
-                </apex:column>
-        
+            
+            <apex:column value="{!account.Name}"/>
+            <apex:column headerValue="view">
+                <apex:outputLink value="{!'/apex/AccountsAndContacts?accid='+account.id}">Link</apex:outputLink>
+            </apex:column>
+            
         </apex:pageBlockTable>
-    
+        
     </apex:pageBlock> 
-     
-    <script>
-        function selectionChanged(){
-
-            var val = document.getElementById('optionBox').value;
-            window.location.href = "{!'/apex/AccountsAndContacts?accid='+Accid+'&label='}"+val;
-
-        }
-    </script>
-
+    
     <select onChange="selectionChanged()" id="optionBox" style="margin-bottom:15px;">
         <apex:repeat value="{!LabelList}" var="ll">
             <option>{!ll}</option>
         </apex:repeat>
     </select>
-   
+    
     <apex:pageBlock title="Contacts">
-    
+        
         <apex:pageBlockTable value="{!contacts}" var="contact">
-        
-                <apex:column headerValue="Contact Name" value="{!contact.FirstName} {!contact.LastName}"/>
-                <apex:column headerValue="Link to Contact">
-                    <apex:outputLink value="{!'/'&contact.id}">Link</apex:outputLink>
-                </apex:column>
-        
+            
+            <apex:column headerValue="Contact Name" value="{!contact.FirstName} {!contact.LastName}"/>
+            <apex:column headerValue="Link to Contact">
+                <apex:outputLink value="{!'/'&contact.id}">Link</apex:outputLink>
+            </apex:column>
+            
         </apex:pageBlockTable>
-    
+        
     </apex:pageBlock>
-
+    
+        
+    <apex:pageBlock title="Label History">
+        
+        <apex:pageBlockTable value="{!ContactHistory}" var="ch">
+            
+            <apex:column headerValue="Date" value="{!ch.CreatedDate}"/>
+            <apex:column headerValue="User" value="{!ch.CreatedBy.Name}"/>
+            <apex:column headerValue="Action" value="Changed Labels from '{!ch.OldValue}' to '{!ch.NewValue}'."></apex:column>
+            
+        </apex:pageBlockTable>
+        
+    </apex:pageBlock>         
+    
+    <script>
+    function selectionChanged(){
+        
+        var val = document.getElementById('optionBox').value;
+        window.location.href = "{!'/apex/AccountsAndContacts?accid='+Accid+'&label='}"+val;
+        
+    }
+    </script>
+    
 </apex:page>
