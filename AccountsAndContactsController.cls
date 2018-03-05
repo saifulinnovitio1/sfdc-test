@@ -3,6 +3,7 @@ public class AccountsAndContactsController{
     public List<Account>accounts {get; set;}
     public List<Contact>contacts {get; set;}
     public List<String>labelList {get; set;}
+    public List<ContactHistory>contactHistory {get; set;}
     
     Public String accid;
     Public String label;
@@ -15,6 +16,10 @@ public class AccountsAndContactsController{
         return labelList;
     }
 
+    public List<ContactHistory> getContactHistory(){
+        return contactHistory;
+    }
+    
     public AccountsAndContactsController(ApexPages.StandardController controller) {
 
       	accid = ApexPages.currentPage().getParameters().get('accid');
@@ -39,14 +44,11 @@ public class AccountsAndContactsController{
 
         String query='select Id, FirstName, LastName, Labels__c from Contact '+queryStr;
 
-                System.debug('queryStr-->'+query);
-
-
         contacts =Database.query(query);
         
        	labelList = getPicklistValues('Contact', 'Labels__c');
 
-        
+        contactHistory = [Select CreatedDate, CreatedBy.Name, CreatedBy.Id, Field, NewValue, OldValue from ContactHistory];
 
     }
 
@@ -64,244 +66,6 @@ public class AccountsAndContactsController{
         }
 
         return lstPickvals;
-    }
-
-
-
-    public static void coverage(){
-        integer i;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
-        i=1;
     }
 
 }
