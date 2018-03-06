@@ -1,6 +1,6 @@
 @isTest
 public with sharing class AccountsAndContactsTest {
-    
+
     public static testMethod void AccountsAndContactsTest() {
         
         Account acc = new Account();
@@ -30,7 +30,6 @@ public with sharing class AccountsAndContactsTest {
         System.assertEquals(accid, acc.Id);
         String label = ApexPages.currentPage().getParameters().get('label');
         System.assertEquals(label, 'First Class Employee');
-        
     }
     
 }
